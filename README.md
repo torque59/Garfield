@@ -4,7 +4,7 @@
 
 Garfield is and open source framework for scanning and exploiting Distributed Configuration Management Systems.
 With rise of distributed configuration management systems (DCMS) or products simulating the same, we thought that this tool could help and find vulnerable instances.
-The framework currently being in it's beta stage has support for Apache Zookeeper, HashiCorp Consul & Sirf, CoreOS Etcd.
+The framework currently being in it's alpha stage has support for HashiCorp Consul and in future will be adding support for Apache Zookeeper, HashiCorp Sirf and CoreOS Etcd.
 
 
 Installation
