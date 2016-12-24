@@ -1,5 +1,6 @@
 #!/usr/bin/python
-# NoSQL Exploitation FrameWork Copyright 2015 Francis Alexander
+# Garfield:A framework for scanning and exploiting Distributed Configuration Management Systems 
+# Copyright 2016 Francis Alexander & Bharadwaj Machiraju
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
