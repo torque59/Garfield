@@ -17,3 +17,11 @@ Sample Usage
 ============================
 - garfield.py -ip localhost -discover consul 
 - garfield.py -ip localhost -attack consul
+
+
+Bugs or Queries
+============================
+Plse report any bugs or queries @
+
+  - helofrancis@gmail.com [@torque59](https://twitter.com/torque59)
+  - bharadwaj.machiraju@gmail.com [tunnelshade](https://twitter.com/torque59)
