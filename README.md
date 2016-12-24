@@ -5,3 +5,15 @@
 Garfield is and open source framework for scanning and exploiting Distributed Configuration Management Systems.
 With rise of distributed configuration management systems (DCMS) or products simulating the same, we thought that this tool could help and find vulnerable instances.
 The framework currently being in it's beta stage has support for Apache Zookeeper, HashiCorp Consul & Sirf, CoreOS Etcd.
+
+
+Installation
+============================
+- Install Pip, sudo apt-get install python-setuptools;easy_install pip
+- pip install -r requirements.txt 
+- python garfield.py -h (For Help Options)
+
+Sample Usage
+============================
+- garfield.py -ip localhost -discover consul 
+- garfield.py -ip localhost -attack consul
