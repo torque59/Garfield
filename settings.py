@@ -29,7 +29,7 @@ def Settings(args):
 
         if attack == "consul":
             consul_attacks.check_ssrf(target)
-            consul_attacks.check_rce(target)
+            #consul_attacks.check_rce(target)
 
     except Exception as e:
         rootLogger.error(str(e))
