@@ -12,7 +12,7 @@ Installation
 
 Sample Usage
 ============================
-`python garfield.py zk --ip [IP] --port [PORT]`
+`python -m garfield.core zk --ip [IP] --port [PORT]`
 
 Bugs or Queries
 ============================
