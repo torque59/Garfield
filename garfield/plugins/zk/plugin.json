@@ -1,0 +1,7 @@
+{
+    "module": "zk",
+    "path": "",
+    "name": "Zookeeper",
+    "identifier": "zk",
+    "help": "Zookeeper plugin"
+}
