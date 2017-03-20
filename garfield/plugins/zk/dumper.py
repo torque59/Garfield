@@ -12,10 +12,11 @@ except ImportError:
 def get_data(zk, node, f):
     info = "%s\n" % (node)
     data, stat = zk.get(node)
-    if len(data) > 0:
-        info += "Version: %s\nData: %s\n\n" % (stat.version, data.decode("utf-8"))
+    if data is not None and len(data) > 0:
+        info += "Version: %s\nData: %s\n\n" % (stat.version, data.decode("utf-8", "ignore"))
     logging.info(info)
-    f.write(info)
+    if f is not None:
+        f.write(info)
     children = zk.get_children(node)
     for c in children:
         get_data(zk, os.path.join(node, c), f)
@@ -30,7 +31,11 @@ def run(args, helpers):
             zk = KazooClient(hosts="%s:%d" % (args.ip, args.port), read_only=True)
             zk.start()
             logging.info("Dumping all zookeeper data to %s" % (args.dump))
-            file_utils.open_file(args.dump, "w", lambda x: get_data(zk, "/", x))
+            # if file then dump to file or just stdout
+            if args.dump is not None:
+                file_utils.open_file(args.dump, "w", lambda x: get_data(zk, "/", x))
+            else:
+                get_data(zk, "/", None)
             logging.info("Dumping finished")
         except Exception:
             logging.exception("Zookeeper might not be running a client listener on this port")

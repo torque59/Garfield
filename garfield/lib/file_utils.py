@@ -1,5 +1,6 @@
 import os
 import imp
+import codecs
 import logging
 
 
@@ -23,7 +24,7 @@ def get_plugin(config_path, module_props):
 
 def open_file(path, mode, func):
     try:
-        with open(path, mode) as f:
+        with codecs.open(path, mode=mode, encoding="utf-8") as f:
             func(f)
     except (OSError, IOError):
         logging.exception("Opening file failed: %s" (path))

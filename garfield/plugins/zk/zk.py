@@ -11,7 +11,7 @@ class Plugin(BasePlugin):
                 "--fingerprint", dest="fingerprint", action="store_true", default=False,
                 help="Fingerprint given zookeeper version using an open port")
         sub_parser.add_argument(
-                "--dump", dest="dump",
+                "--dump", dest="dump", default=None,
                 help="Dump all zookeeper data to given file")
         return(sub_parser)
 
