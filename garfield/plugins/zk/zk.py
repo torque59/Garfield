@@ -11,8 +11,11 @@ class Plugin(BasePlugin):
                 "--fingerprint", dest="fingerprint", action="store_true", default=False,
                 help="Fingerprint given zookeeper version using an open port")
         sub_parser.add_argument(
-                "--dump", dest="dump", default=None,
+                "--dump", dest="dump", const="/dev/null", nargs="?",
                 help="Dump all zookeeper data to given file")
+        sub_parser.add_argument(
+                "--data-regex", dest="data_regex",
+                help="Python regex to filter node with matching data")
         return(sub_parser)
 
     def run(self, args):
