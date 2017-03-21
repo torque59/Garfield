@@ -1,0 +1,7 @@
+{
+    "module": "consuld",
+    "path": "",
+    "name": "Consul",
+    "identifier": "consul",
+    "help": "Consul plugin"
+}
