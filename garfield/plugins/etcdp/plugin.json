@@ -1,0 +1,7 @@
+{
+    "module": "etcdp",
+    "path": "",
+    "name": "etcd",
+    "identifier": "etcd",
+    "help": "Etcd plugin"
+}
