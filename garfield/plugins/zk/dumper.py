@@ -13,14 +13,15 @@ except ImportError:
 def get_data(zk, node, f=None, data_regex=None):
     data, stat = zk.get(node)
     # Check if there is data
+    info = "\n%s\n" % (node)
     if data is not None and len(data) > 0:
         data = data.decode("utf-8", "ignore")
         # Check if a filter is not there, if there then find
         if (data_regex is None) or (data_regex and re.findall(data_regex, data, re.M | re.I)):
-            info = "\n%s\nVersion: %s\nData: %s\n\n" % (node, stat.version, data)
-            logging.info(info)
-            if f is not None:
-                f.write(info)
+            info += "Version: %s\nData: %s\n\n" % (stat.version, data)
+    logging.info(info)
+    if f is not None:
+        f.write(info)
     children = zk.get_children(node)
     for c in children:
         get_data(zk, os.path.join(node, c), f=f, data_regex=data_regex)
