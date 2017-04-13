@@ -1,2 +1,5 @@
 tornado<=4.4.2
 kazoo<=2.2.1
+python-consul
+python-etcd
+
