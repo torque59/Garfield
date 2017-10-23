@@ -9,16 +9,22 @@ try:
 except ImportError:
     KazooClient = None
 
+def prettify_acls(acls):
+    acl_strings = []
+    for acl in acls:
+        acl_strings.append("%s:%s:%s" % (",".join(acl.acl_list), acl.id.scheme, acl.id.id))
+    return(" ".join(acl_strings))
 
 def get_data(zk, node, f=None, data_regex=None):
     data, stat = zk.get(node)
+    acls, stat = zk.get_acls(node)
     # Check if there is data
     info = "\n%s\n" % (node)
     if data is not None and len(data) > 0:
         data = data.decode("utf-8", "ignore")
         # Check if a filter is not there, if there then find
         if (data_regex is None) or (data_regex and re.findall(data_regex, data, re.M | re.I)):
-            info += "Version: %s\nData: %s\n\n" % (stat.version, data)
+            info += "Version: %s\nACLs: %s\nData: %s\n\n" % (stat.version, prettify_acls(acls), data)
     logging.info(info)
     if f is not None:
         f.write(info)
