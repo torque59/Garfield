@@ -35,7 +35,7 @@ def run(args, helpers):
             zk = KazooClient(hosts="%s:%d" % (args.ip, args.port), read_only=True)
             zk.start()
             logging.info("Dumping all zookeeper data to %s" % (args.dump))
-            file_utils.open_file(args.dump, "w", lambda x: get_data(zk, "/", f=x, data_regex=args.data_regex))
+            file_utils.open_file(args.dump, "w", lambda x: get_data(zk, args.node, f=x, data_regex=args.data_regex))
             logging.info("Dumping finished")
         except Exception:
             logging.exception("Zookeeper might not be running a client listener on this port")

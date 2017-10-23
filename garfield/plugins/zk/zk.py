@@ -16,6 +16,9 @@ class Plugin(BasePlugin):
         sub_parser.add_argument(
                 "--data-regex", dest="data_regex",
                 help="Python regex to filter node with matching data")
+        sub_parser.add_argument(
+                "--node", dest="node", default="/",
+                help="Zookeeper node to start traversing from")
         return(sub_parser)
 
     def run(self, args):
