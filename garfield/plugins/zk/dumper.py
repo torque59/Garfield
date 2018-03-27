@@ -6,6 +6,7 @@ from garfield.lib import file_utils
 
 try:
     from kazoo.client import KazooClient
+    from kazoo.exceptions import NoAuthError
 except ImportError:
     KazooClient = None
 
@@ -16,7 +17,11 @@ def prettify_acls(acls):
     return(" ".join(acl_strings))
 
 def get_data(zk, node, f=None, data_regex=None):
-    data, stat = zk.get(node)
+    try:
+        data, stat = zk.get(node)
+    except NoAuthError:
+        data = "<Couldn't read because of ACLs>"
+        logging.debug("ACLs prevent reading of this data for {node}".format(node=node))
     acls, stat = zk.get_acls(node)
     # Check if there is data
     info = "\n%s\n" % (node)
@@ -28,9 +33,13 @@ def get_data(zk, node, f=None, data_regex=None):
     logging.info(info)
     if f is not None:
         f.write(info)
-    children = zk.get_children(node)
-    for c in children:
-        get_data(zk, os.path.join(node, c), f=f, data_regex=data_regex)
+
+    try:
+        children = zk.get_children(node)
+        for c in children:
+            get_data(zk, os.path.join(node, c), f=f, data_regex=data_regex)
+    except NoAuthError:
+        logging.debug("ACLs prevent extracting children nodes for {node}".format(node=node))
 
 
 def run(args, helpers):
