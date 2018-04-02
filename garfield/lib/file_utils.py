@@ -1,5 +1,6 @@
 import os
 import imp
+import json
 import codecs
 import logging
 
@@ -26,5 +27,18 @@ def open_file(path, mode, func):
     try:
         with codecs.open(path, mode=mode, encoding="utf-8") as f:
             func(f)
+    except (OSError, IOError):
+        logging.exception("Opening file failed: %s" (path))
+
+
+def json_dump(path, data):
+    open_file(path, "w", lambda x: json.dump(data, x, indent=2))
+
+
+def json_load(path):
+    try:
+        with codecs.open(path, mode="r", encoding="utf-8") as f:
+            data = json.load(f)
+        return(data)
     except (OSError, IOError):
         logging.exception("Opening file failed: %s" (path))
