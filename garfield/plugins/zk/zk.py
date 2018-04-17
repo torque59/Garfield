@@ -34,5 +34,5 @@ class Plugin(BasePlugin):
             dumper.run(args, self.helpers)
         if args.load is not None:
             loader.run(args, self.helpers)
-        if args.remove is not None:
+        if args.remove is True:
             remover.run(args, self.helpers)
