@@ -15,10 +15,11 @@ except ImportError:
 def set_data(zk, node):
     zk.ensure_path(node.path)
 
-    try:
-        zk.set(node.path, node.data.encode("utf-8"))
-    except NoAuthError:
-        logging.info("ACLs have prevented setting of data on {path}".format(path=node.path))
+    if node.data is not None:
+        try:
+            zk.set(node.path, node.data.encode("utf-8"))
+        except NoAuthError:
+            logging.info("ACLs have prevented setting of data on {path}".format(path=node.path))
 
     for c in node.children:
         set_data(zk, c)
