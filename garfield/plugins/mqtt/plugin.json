@@ -1,0 +1,7 @@
+{
+    "module": "mqtt",
+    "path": "",
+    "name": "mqtt",
+    "identifier": "mqtt",
+    "help": "MQTT plugin"
+}
