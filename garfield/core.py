@@ -5,9 +5,9 @@ import logging
 import argparse
 import tornado.log
 
-import config
+import garfield.config as config
 
-from lib import file_utils
+from garfield.lib import file_utils
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 PLUGINS_DIR = os.path.join(BASE_DIR, config.PLUGINS_DIR_NAME)
