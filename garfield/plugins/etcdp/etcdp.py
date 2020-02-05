@@ -16,13 +16,6 @@ class Plugin(BasePlugin):
         sub_parser.add_argument(
                 "--attack", dest="attack", action="store_true", default=False,
                 help="Attacks consul version using an open port")
-	"""
-        sub_parser.add_argument(
-                "--data-regex", dest="data_regex",
-                help="Python regex to filter node with matching data")
-        return(sub_parser)
-	"""
-
     def run(self, args):
         if args.fingerprint is True:
             fingerprinter.run(args, self.helpers)

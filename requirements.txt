@@ -1,5 +1,5 @@
 tornado<=4.4.2
-kazoo<=2.2.1
+kazoo==2.6.1
 python-consul
 python-etcd
 paho-mqtt

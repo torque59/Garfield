@@ -1,5 +1,4 @@
-import file_utils
-
+import garfield.lib.file_utils as file_utils
 
 class BasePlugin(object):
     """Both plugins and subplugins extend this"""
